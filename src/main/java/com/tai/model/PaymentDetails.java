@@ -2,9 +2,13 @@ package com.tai.model;
 
 import jakarta.persistence.Embeddable;
 import lombok.AllArgsConstructor;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Embeddable
+@Getter
+@Setter
 @AllArgsConstructor
 @NoArgsConstructor
 public class PaymentDetails {
@@ -15,4 +19,6 @@ public class PaymentDetails {
     private String razorpayPaymentLinkReferenceId;
     private String razorpayPaymentLinkStatus;
     private String razorpayPaymentId;
+    private String status;
+
 }

@@ -24,7 +24,7 @@ public class Order {
     @ManyToOne
     private User user;
     @OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
-    private List<OrderItem> orerItems;
+    private List<OrderItem> orderItems;
     private LocalDateTime orderDate;
     private LocalDateTime deliveryDate;
     @OneToOne
@@ -35,6 +35,7 @@ public class Order {
     private double total_discountPrice;
     private double discounte;
     private int total_item;
+    private String status;
     private LocalDateTime createdAt;
 
 }

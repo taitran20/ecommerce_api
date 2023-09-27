@@ -24,11 +24,16 @@ public class OrderController {
     private OrderService orderService;
     private UserService userService;
 
-    @PostMapping("/")
-    public ResponseEntity<Order> createOrder(@RequestBody Address address, @RequestHeader("Authorization")String jwt) throws UserException{
-        User user = userService.getUserProfileByJwt(jwt);
-        Order order = orderService.crateOrder(user,address);
-        return new ResponseEntity<>(order, HttpStatus.CREATED);
+    @PostMapping("")
+    public Object createOrder(@RequestBody Address address, @RequestHeader("Authorization")String jwt) throws UserException{
+        try {
+            User user = userService.getUserProfileByJwt(jwt);
+            Order order = orderService.crateOrder(user,address);
+            return new ResponseEntity<>(order, HttpStatus.CREATED);
+        }catch (Exception e){
+            return new ResponseEntity<>("Error", HttpStatus.BAD_REQUEST);
+        }
+
     }
 
     @GetMapping("/user")
@@ -45,7 +50,7 @@ public class OrderController {
     public ResponseEntity<Order> findOrderById(@PathVariable("Id") Long orderId, @RequestHeader("Authorization")String jwt) throws UserException, OrderException {
         User user = userService.getUserProfileByJwt(jwt);
         Order order = orderService.findById(orderId);
-        if(order == null){
+        if(order == null || user == null){
             return new  ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
         return new ResponseEntity<>(order, HttpStatus.OK);

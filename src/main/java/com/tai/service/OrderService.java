@@ -12,7 +12,9 @@ public interface OrderService {
     Order findById(Long id) throws OrderException;
     List<Order> userOrdersHistory(Long user_id);
     Order placedOrder(Long order_id) throws OrderException;
-    Order comfirmedOrder(Long order_id) throws OrderException;
+
+    Order confirmedOrder(Long order_id) throws OrderException;
+
     Order shippedOrder(Long order_id) throws OrderException;
     Order deliveredOrder(Long order_id) throws OrderException;
     Order canceledOrder(Long order_id) throws OrderException;
